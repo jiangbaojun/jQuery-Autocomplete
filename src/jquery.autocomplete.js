@@ -674,7 +674,8 @@
                     html += formatGroup(suggestion, value, i);
                 }
 
-                html += '<div class="' + className + '" data-index="' + i + '">' + formatResult(suggestion, value, i) + '</div>';
+                var subTitle = suggestion.subValue==undefined?"":suggestion.subValue;
+                html += '<div class="' + className + '" data-index="' + i + '"><span class="suggestion-title">' + formatResult(suggestion, value, i) + '</span><span class="sub-suggestion-title">' + subTitle  + '</span></div>';
             });
 
             this.adjustContainerWidth();
