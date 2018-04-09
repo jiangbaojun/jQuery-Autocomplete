@@ -1,5 +1,5 @@
 /**
-*  Ajax Autocomplete for jQuery, version 1.4.7
+*  Ajax Autocomplete for jQuery, version %version%
 *  (c) 2017 Tomas Kirda
 *
 *  Ajax Autocomplete for jQuery is freely distributable under the terms of an MIT-style license.
@@ -347,7 +347,11 @@
             if (that.options.width === 'auto') {
                 styles.width = that.el.outerWidth() + 'px';
             }
-
+            // add css "right" option,working when "width" option value equal "auto"
+            if(that.options.right && that.options.width === 'auto'){
+                styles.width = "";
+                styles.right = that.options.right+"px";
+            }
             $container.css(styles);
         },
 
@@ -670,7 +674,8 @@
                     html += formatGroup(suggestion, value, i);
                 }
 
-                html += '<div class="' + className + '" data-index="' + i + '">' + formatResult(suggestion, value, i) + '</div>';
+                var subTitle = suggestion.subValue==undefined?"":suggestion.subValue;
+                html += '<div class="' + className + '" data-index="' + i + '"><span class="suggestion-title">' + formatResult(suggestion, value, i) + '</span><span class="sub-suggestion-title">' + subTitle  + '</span></div>';
             });
 
             this.adjustContainerWidth();
